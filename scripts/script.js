@@ -54,3 +54,38 @@ function reverseString(input) {
         });
         calendar.appendChild(myButton);
     }
+
+function sendValidRequest() {
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://api.github.com/users/0stapyan', true);
+
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      const responseData = JSON.parse(xhr.responseText);
+      document.getElementById('githubInfo').textContent = `GitHub Username: ${responseData.login}`;
+    } else {
+      document.getElementById('githubInfo').textContent = 'Error: Failed to fetch GitHub profile';
+    }
+  };
+
+  xhr.send();
+}
+
+function sendErrorRequest() {
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://api.github.com/users/nonexistent_user', true);
+
+  xhr.onload = function () {
+    if (xhr.status === 200) {
+      const responseData = JSON.parse(xhr.responseText);
+      document.getElementById('githubInfoError').textContent = `GitHub Username: ${responseData.login}`;
+    } else {
+      document.getElementById('githubInfoError').textContent = 'Error: User not found';
+    }
+  };
+
+  xhr.send();
+}
+
+document.getElementById('validRequestButton').addEventListener('click', sendValidRequest);
+document.getElementById('errorRequestButton').addEventListener('click', sendErrorRequest);

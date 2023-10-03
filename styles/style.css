@@ -15,6 +15,15 @@
     height: 25px;
     margin: 0;
 }
+
+#task3{
+    font-family: 'Acme', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 25px;
+    margin: 0;
+}
   
 #inputText {
     font-family: 'Acme', sans-serif;
